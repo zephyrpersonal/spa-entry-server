@@ -1,12 +1,14 @@
 FROM golang:alpine
 
+RUN pwd
+
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 
 RUN go get -t github.com/valyala/fasthttp
 
-ADD server.go $GOPATH/src
+ADD server.go src
 
-WORKDIR $GOPATH/src
+ENV GOBIN $GOPATH/bin
 
-RUN go build server.go
+RUN go install src/server.go
