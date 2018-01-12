@@ -10,13 +10,19 @@ import (
 )
 
 func readFile() (file []byte) {
-	var indexFileName = "./index.html"
+	indexFileName := "./index.html"
+
+	flag.Parse()
 
 	args := flag.Args()
+
+	log.Println(args)
 
 	if len(args) > 0 {
 		indexFileName = args[0]
 	}
+
+	log.Printf("index file loaded: %s", indexFileName)
 
 	f, e := ioutil.ReadFile(indexFileName)
 
