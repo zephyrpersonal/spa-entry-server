@@ -42,9 +42,9 @@ func handler(file []byte) func(*fasthttp.RequestCtx) {
 
 func main() {
 
-	port, _ := os.LookupEnv("PORT")
+	port, isPresented := os.LookupEnv("PORT")
 
-	if port == "" {
+	if !isPresented {
 		port = "8080"
 	}
 
